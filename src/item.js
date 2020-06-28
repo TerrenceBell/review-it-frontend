@@ -5,10 +5,18 @@ class Item {
         this.name = name
         this.category = category
         this.description = description
+        renderItem()
     }
 
-//render all items
+
 // delete items?
+deleteItem(){
+    console.log("clicked delete item bruv")
+}
+//render itmes
+renderItem(){
+    const
+}
 //link items to show page
 
 }

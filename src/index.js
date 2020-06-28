@@ -1,4 +1,5 @@
-fetch("http://localhost:3000/items")
+const BACKEND_URL = 'http://localhost:3000';
+fetch(`${BACKEND_URL}/items`)
 .then(resp => resp.json())
 .then(items => {
   items.forEach(item => {
