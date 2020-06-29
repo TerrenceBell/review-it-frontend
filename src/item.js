@@ -15,7 +15,8 @@ deleteItem(){
 }
 //render itmes
 renderItem(){
-    const
+    const itemList = document.getElementById('item-list')
+    
 }
 //link items to show page
 

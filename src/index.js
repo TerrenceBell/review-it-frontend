@@ -3,6 +3,7 @@ fetch(`${BACKEND_URL}/items`)
 .then(resp => resp.json())
 .then(items => {
   items.forEach(item => {
+    debugger
     const { id, name, category, description} = item 
     new Item(id, name, category, description)
   });
