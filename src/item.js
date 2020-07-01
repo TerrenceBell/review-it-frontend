@@ -1,3 +1,4 @@
+
 class Item {
 
     constructor(id, name, category, description, image){
@@ -12,7 +13,14 @@ class Item {
 
 // delete items?
 deleteItem(e){
-    console.log("clicked delete item bruv")
+    const id = parseInt(e.target.parentElement.id)
+    fetch(`${BACKEND_URL}/items/${id}`, {
+        method: 'DELETE'
+    })
+    .then(() => {
+        document.getElementById('item-list').removeChild(document.getElementById(id))
+    })
+    //console.log("clicked delete item bruv")
 }
 
 itemHTML(){
