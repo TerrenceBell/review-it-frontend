@@ -14,3 +14,20 @@ fetch(`${BACKEND_URL}/items`)
 
 console.log("testing...")
 
+
+//form should open when review button is clicked!
+// or maybe it goes to a show page idk bruv
+
+formHTML(){
+  return `
+  <h3>Add a Review!</h3>
+  <form id="review-form">
+  <input type="text" name="title" placeholder="title"><br />
+  <input type="text" name="rating" placeholder="ratio out of 10"><br />
+  <input type="textarea" name="content" placeholder="review goes here!"><br />
+
+
+
+  `
+}
+
