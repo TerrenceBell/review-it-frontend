@@ -21,7 +21,8 @@ itemHTML(){
     <h3>${this.name}</h3>
       <p>Catergory: ${this.category}</P
       <p>${this.description}</p>
-      <button class="delete" data-id"${this.id}> delete?</button>
+      <button class="delete" data-id"${this.id}> Delete?</button>
+      <button class="review" data-id"${this.id}> Add Review</button
     `
 }
 
