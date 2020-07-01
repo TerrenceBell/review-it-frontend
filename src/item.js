@@ -11,7 +11,7 @@ class Item {
 
 
 // delete items?
-deleteItem(){
+deleteItem(e){
     console.log("clicked delete item bruv")
 }
 
@@ -35,6 +35,9 @@ renderItem(){
     innerItem.id = this.id 
     innerItem.innerHTML += this.itemHTML()
     itemList.appendChild(innerItem)
+    innerItem.addEventListener('click', e => {
+        if (e.target.className.includes('delete')) this.deleteItem(e)
+    })
 }
 //link items to show page
 
