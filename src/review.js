@@ -1,4 +1,16 @@
 
+
+
+// fetch('http://localhost:3000/reviews')
+// .then(resp => resp.json())
+// .then(reviews => {
+//   reviews.forEach(review => {
+    
+//     const { id, title, rating, content} = review
+    
+//     new Review(id, title, rating, content)
+//   });
+// })
 class Review {
 
     constructor(id, title, rating, content){
@@ -10,22 +22,32 @@ class Review {
     }
 
     static submitReview(e){ 
-        debugger
+        
+        e.preventDefault()
+        
         const itemId = parseInt(e.target.parentElement.parentElement.parentElement.parentElement.id)
-        let data = {'title': e.target.title.value,
-                    'content': e.target.content.value 
+        //let this.id === itemId
+        let reviewData = {'title': e.target.parentElement.title.value,
+                    'content': e.target.parentElement.content.value,
+                    'rating': e.target.parentElement.rating.value,
+                    'item_id': itemId
                     }   
+                    fetch('http://localhost:3000/reviews', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(reviewData)
+                    })
+                    .then(resp => resp.json())
+                    .then(review => { 
+                        const { id, title, rating, content} = review
+                        new Review(id, title, rating, content)
+                        document.getElementById('review-form').reset()
+                    }) 
     }
 
-    // fetch('http://localhost:3000/items', {
-    //     method: 'PATCH',
-    //     headers: {
-    //         'Content-Type': 'application/json'
-    //     }
-    //     body: JSON.stringify(data)
-    // })
-    // .then(resp => resp.json())
-    // .then
+   
 
     //add review button to each item
     //on click of form, trigger patch request
@@ -41,10 +63,13 @@ class Review {
             <h1>Create A Review</h1>
         
             <label for="title"><b>Title</b></label>
-            <input type="text" placeholder="Enter Title" name="title" required>
+            <input type="text" name="title" placeholder="Enter Title"  required><br />
+
+            <label for="rating"><b>Rating</b></label>
+            <input type="text" name="rating" placeholder="Enter Rating Out Of 10"  required>
         
             <br /><label for="content"><b>Review</b></label>
-            <input type="textarea" placeholder="Enter Review Here" name="content" required>
+            <input type="text" placeholder="Enter Review Here" name="content" required>
         
             <button type="submit" class="btn reviewSubmit">Submit Review</button>
             <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
