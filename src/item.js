@@ -45,8 +45,10 @@ renderItem(){
     itemList.appendChild(innerItem)
     innerItem.addEventListener('click', e => {
         if (e.target.className.includes('delete')) this.deleteItem(e)
+        if(e.target.className.includes('review')) Review.reviewForm(e)
     })
 }
 //link items to show page
+
 
 }

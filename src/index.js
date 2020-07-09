@@ -28,3 +28,12 @@ console.log("testing...")
 //   `
 // }
 
+//grab pop up by id
+
+
+//pop up form funtionality 
+function createReview(e){
+  e.preventDefault()
+}
+
+
