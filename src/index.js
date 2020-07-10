@@ -12,7 +12,7 @@ fetch(`${BACKEND_URL}/items`)
 // have form to create item... maybe
 // have form to create review
 
-console.log("testing...")
+
 
 
 //form should open when review button is clicked!
@@ -32,8 +32,6 @@ console.log("testing...")
 
 
 //pop up form funtionality 
-function createReview(e){
-  e.preventDefault()
-}
+
 
 

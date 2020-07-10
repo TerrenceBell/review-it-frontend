@@ -1,16 +1,16 @@
 
 
 
-// fetch('http://localhost:3000/reviews')
-// .then(resp => resp.json())
-// .then(reviews => {
-//   reviews.forEach(review => {
+fetch('http://localhost:3000/reviews')
+.then(resp => resp.json())
+.then(reviews => {
+  reviews.forEach(review => {
     
-//     const { id, title, rating, content} = review
+    const { id, title, rating, content} = review
     
-//     new Review(id, title, rating, content)
-//   });
-// })
+    new Review(id, title, rating, content)
+  });
+})
 class Review {
 
     constructor(id, title, rating, content){
@@ -43,7 +43,9 @@ class Review {
                     .then(review => { 
                         const { id, title, rating, content} = review
                         new Review(id, title, rating, content)
-                        document.getElementById('review-form').reset()
+                        // this.renderReview()
+                        // debugger
+                        // document.getElementById('review-form').reset()
                     }) 
     }
 
@@ -72,11 +74,19 @@ class Review {
             <input type="text" placeholder="Enter Review Here" name="content" required>
         
             <button type="submit" class="btn reviewSubmit">Submit Review</button>
-            <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+            <button type="button" class="btn cancel closeForm()">Close</button>
           </form>
         </div>
          `
     }
+
+    // openForm() {
+    //     document.getElementById("review-form").style.display = "block";
+    //   }
+      
+    //    closeForm() {
+    //     document.getElementById("review-form").style.display = "none";
+    //   }
 
 
     static reviewForm(e){
@@ -95,12 +105,44 @@ class Review {
     }
     
     
-         openForm() {
-          document.getElementById("review-form").style.display = "block";
+         
+
+        itemReviewHTML(){
+            return `
+            
+            <h3>${this.title}</h3>
+              <p>rating: ${this.rating}</P
+              <p>${this.content}</p>
+              <button class="delete" data-id"${this.id}> Delete?</button>
+            `
         }
-        
-         closeForm() {
-          document.getElementById("review-form").style.display = "none";
+
+        // delete review?
+deleteReview(e){
+    const id = parseInt(e.target.parentElement.id)
+    fetch(`${BACKEND_URL}/reviews/${id}`, {
+        method: 'DELETE'
+    })
+    .then(() => {
+        debugger
+        document.getElementsByClassName('item-review').removeChild(document.getElementById(id))
+    })
+}
+
+        renderReview(){
+            const itemList = document.getElementById('item-list')
+            const innerItem = document.createElement('div')
+            innerItem.classList.add('item-review')
+            innerItem.id = Item.id 
+            innerItem.innerHTML += this.itemReviewHTML()
+            itemList.appendChild(innerItem)
+            innerItem.addEventListener('click', e => {
+                if (e.target.className.includes('delete')) this.deleteReview(e)
+                //if(e.target.className.includes('review')) Review.reviewForm(e)
+
+            })
         }
         
     }
+
+    // delete items?
