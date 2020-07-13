@@ -1,12 +1,13 @@
 
 class Item {
 
-    constructor(id, name, category, description, image){
+    constructor(id, name, category, description, image, reviews){
         this.id = id 
         this.name = name
         this.category = category
         this.description = description
         this.image = image
+        this.reviews = reviews
         this.renderItem()
     }
 
@@ -29,8 +30,27 @@ itemHTML(){
     <h3>${this.name}</h3>
       <p>Catergory: ${this.category}</P
       <p>${this.description}</p>
-      <button class="delete" data-id"${this.id}> Delete?</button>
-      <button class="review" data-id"${this.id}> Add Review</button
+      <button class="delete" data-id"${this.id}> Delete Item?</button>
+      <button class="review-button" data-id"${this.id}> Add Review</button>
+      ${this.reviews.map(function(review){ 
+        return (`
+            <div id="${review.id}"> 
+                <h2> 
+                    ${review.title}
+                </h2>
+                <p> 
+                    ${review.rating}
+                </P>
+                <p> 
+                    ${review.content}
+                </P>
+            </div>
+        
+        `)
+        
+    
+    }).join('')}
+     
     `
 }
 
@@ -45,7 +65,7 @@ renderItem(){
     itemList.appendChild(innerItem)
     innerItem.addEventListener('click', e => {
         if (e.target.className.includes('delete')) this.deleteItem(e)
-        if(e.target.className.includes('review')) Review.reviewForm(e)
+        if(e.target.className.includes('review-button')) Review.reviewForm(e)
     })
 }
 //link items to show page

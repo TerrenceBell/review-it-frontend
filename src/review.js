@@ -44,8 +44,8 @@ class Review {
                         const { id, title, rating, content} = review
                         new Review(id, title, rating, content)
                         // this.renderReview()
-                        // debugger
-                        // document.getElementById('review-form').reset()
+                        //debugger
+                         document.getElementById('review-form').reset()
                     }) 
     }
 
@@ -60,8 +60,9 @@ class Review {
     static reviewHTML(){
         return `
        
-        <div id="review-form">
-          <form class="form-container">
+        <div >
+
+          <form id="review-form" class="form-container">
             <h1>Create A Review</h1>
         
             <label for="title"><b>Title</b></label>

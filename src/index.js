@@ -4,9 +4,9 @@ fetch(`${BACKEND_URL}/items`)
 .then(items => {
   items.forEach(item => {
     
-    const { id, name, category, description, image} = item 
+    const { id, name, category, description, image, reviews} = item 
     
-    new Item(id, name, category, description, image)
+    new Item(id, name, category, description, image, reviews)
   });
 })
 // have form to create item... maybe
@@ -32,6 +32,8 @@ fetch(`${BACKEND_URL}/items`)
 
 
 //pop up form funtionality 
+
+// document.addEventListener('DOMContentLoaded', function())
 
 
 
